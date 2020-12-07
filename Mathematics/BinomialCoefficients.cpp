@@ -18,6 +18,7 @@ typedef vector<pl> vpl;
 #define FASTIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
 
 #define rep(i, a, b) for(int i = a; i < (b); ++i)
+
 #define sz(x) (int)(x).size()
 #define mp make_pair
 #define pb push_back
