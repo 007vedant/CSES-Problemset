@@ -31,27 +31,37 @@ typedef vector<pl> vpl;
 const int MOD = 1e9+7;
 const int N = 2e5+5;
 
+int n, x, c;
+
 
 int main() {
 	FASTIO;
-
-	int n; cin >> n;
-	vi towers;
+	
+	cin >> x >> n;
+	
+	set<int> pos;
+	multiset<int> dist;
+	pos.insert({0, x});
+	dist.insert(x);
 
 	rep(i, 0, n){
-		int x; cin >> x;
+		cin >> c;
+		auto rt = pos.upper_bound(c);
+		auto lt = rt;
+		lt--;
 
-		auto j = ub(all(towers), x);
-		if(j == towers.end())
-			towers.pb(x);
+		int v1 = *rt;
+		int v2 = *lt;
 
-		else
-			*j = x;
+		dist.erase(dist.find(v1 - v2));
+		pos.insert(c);
+		dist.insert(v1 - c);
+		dist.insert(c - v2);
+
+		auto it = dist.rbegin();
+		// it--;
+		cout << *it << " ";
 	}
-
-	cout << sz(towers);
-
-	
 	
 
 return 0;
