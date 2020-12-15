@@ -33,7 +33,8 @@ const int N = 2e5+5;
 
 ll p, q, r ,s;
 
-// Algorithm - Fast Doubling for Fibonacci Numbers
+// Algorithm - Fast Doubling for Fibonacci Numbers O(logn)
+// asymptotically faster than matrix multiplication
 // Reference - 
           //  F(2n) = F(n)[2*F(n+1) - F(n)]
           //  F(2n+1) = F(n)^2 + F(n+1)^2
