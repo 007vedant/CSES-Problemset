@@ -31,6 +31,8 @@ typedef vector<pl> vpl;
 const int MOD = 1e9+7;
 const int N = 1e6+6;
 
+// if the constraints are large, matrix multiplication is to be used.
+
 int dp[N];
 
 int main() {
