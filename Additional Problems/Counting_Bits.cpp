@@ -34,6 +34,7 @@ typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics
 const int MOD = 1e9+7;
 const int N = 2e5+5;
 
+
 ll calc(ll N){
 	ll two = 2, ans = 0;
 	ll n = N;
@@ -50,11 +51,12 @@ ll calc(ll N){
 }
 
 
+
 int main() {
 	FASTIO;
 
 	ll n; cin >> n;
-	cout << calc(n);
+	cout << solve(n);
 	
 
 return 0;
