@@ -5,3 +5,4 @@
 * [Dynamic Programming](https://github.com/007vedant/CSES-Problemset/tree/master/Dynamic%20Programming)
 
 Rest are in progress :D
+The problemset has also been updated with new problems.
