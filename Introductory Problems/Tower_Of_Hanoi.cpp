@@ -9,18 +9,12 @@ typedef long double ld;
 typedef pair<int, int> pi;
 typedef pair<ll,ll> pl;
 typedef pair<ld,ld> pd;
- 
-typedef vector<int> vi;
-typedef vector<ld> vd;
-typedef vector<ll> vl;
-typedef vector<pi> vpi;
-typedef vector<pl> vpl;
 
 typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics_node_update> Tree;
 #define FASTIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
 
 #define rep(i, a, b) for(int i = a; i < (b); ++i)
-#define repr(i, a, b) for(int i = a; i <= (b); ++i)
+#define repr(i, a, b) for(int i = a; i >= (b); --i)
 #define sz(x) (int)(x).size()
 #define mp make_pair
 #define pb push_back
@@ -34,35 +28,31 @@ typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics
 const int MOD = 1e9+7;
 const int N = 2e5+5;
 
-// O(nlogn)
+vector<pair<int, int> > ans;
 
-int lis(vi &arr, int n){
-	vi dp(n+1, MOD); // dp[i] = element at which max inc subs of length i ends
-	dp[0] = -MOD;
-
-	rep(i, 0, n){
-		int j = ub(all(dp), arr[i]) - dp.begin();
-		if(dp[j-1] < arr[i] && arr[i] < dp[j])
-			dp[j] = arr[i];
-	}
-
-	int ans = 0;
-	rep(i, 0, n+1)
-		if(dp[i] < MOD)
-			ans = i;
-
-
-	return ans;
+void ToW(int n, int l, int r, int mid, int &moves){
+    if(n == 1){
+        moves++;
+        ans.pb(mp(l, r));
+        return;
+    }
+    moves++;
+    ToW(n-1, l, mid, r, moves);
+    ans.pb(mp(l, r));
+    ToW(n-1, mid, r, l, moves);
 }
 
-
 int main() {
-	FASTIO;
-	int n; cin >> n;
-	vi arr(n);
-	for(int &x: arr) cin >> x;
+    int n; cin >> n;
+    int moves = 0;
 
-	cout << lis(arr, n);
+    ToW(n, 1, 3, 2, moves);
 
+    cout << moves << endl;
+    for(auto p: ans)
+        cout << p.f << " " << p.s << endl;
+
+    
+ 
 return 0;
 }
