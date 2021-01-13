@@ -38,6 +38,8 @@ const int N = 2e5+5;
 int main() {
 	FASTIO;
 
+    // using prefix sum logic
+
 	int n, q;
     cin >> n >> q;
     vl x(n+1);
@@ -55,3 +57,54 @@ int main() {
 
 return 0;
 }
+
+// - Alternate Solution using Segment Trees
+
+
+/* int arr[N]; ll seg[4*N]; 
+
+void build(int ind, int lo, int hi){
+    if(lo == hi){
+        seg[ind] = arr[lo];
+        return;
+    }
+
+    int mid = (lo + hi)/2;
+    build(2*ind+1,lo, mid);
+    build(2*ind+2, mid+1, hi);
+    
+    seg[ind] = seg[2*ind+1] ^ seg[2*ind+2];
+}
+
+ll query(int ind, int lo, int hi, int l, int r){
+    if(lo >= l && hi <= r)  
+        return seg[ind];
+
+    if(lo > r || hi < l)  
+        return 0;
+
+    int mid = (lo+hi)/2;
+    ll left = query(2*ind+1, lo, mid, l, r);
+    ll right = query(2*ind+2, mid+1, hi, l, r);
+
+    return left^right;
+}
+
+
+int main() {
+    FASTIO;
+
+    int n, q; cin >> n >> q;
+    rep(i, 0, n) cin >> arr[i];
+
+    build(0, 0, n-1);
+
+    while(q--){
+        int l, r; cin >> l >> r;
+        cout << query(0, 0, n-1, l-1, r-1) << "\n";
+    }
+
+    
+
+return 0;
+} */
