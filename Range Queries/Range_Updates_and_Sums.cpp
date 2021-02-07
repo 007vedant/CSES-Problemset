@@ -34,11 +34,13 @@ typedef tree<int, null_type, less_equal<int>, rb_tree_tag, tree_order_statistics
 const int MOD = 1e9+7;
 const int N = 2e5+5;
 
+// method adopted from one of the Range_Queries_CSES editorial blogs on CF.
+
 struct node
 {
-	ll sum;
-	ll setVal;
-	ll inc;
+	ll sum;				// query sum
+	ll setVal;			// set value
+	ll inc;				// increment value
 	bool setvalid;
 
 	node() {
@@ -68,7 +70,7 @@ void build(int nn, int lo, int hi) { // nn = node number
 	seg[nn].sum = seg[2*nn+1].sum + seg[2*nn+2].sum;
 }
 
-void compose(int par, int child) {
+void compose(int par, int child) { // propagation is done here
 	if(seg[par].setvalid) {
 		seg[child].setvalid = 1;
 		seg[child].setVal = seg[par].setVal;
@@ -78,7 +80,7 @@ void compose(int par, int child) {
 		seg[child].inc += seg[par].inc;
 }
 
-void applyAggr(int nn, int lo, int hi) {
+void applyAggr(int nn, int lo, int hi) { // lazy update is done here
 	if(seg[nn].setvalid)
 		seg[nn].sum = (hi-lo+1)*seg[nn].setVal;
 
@@ -92,7 +94,7 @@ void applyAggr(int nn, int lo, int hi) {
 	seg[nn].reset();
 }
 
-void incUpdate(int nn, int lo, int hi, int l, int r, int x) {
+void incUpdate(int nn, int lo, int hi, int l, int r, int x) { // updates with increment
 	if(hi < l || r < lo) return;
 
 	if(l <= lo && r >= hi) {
@@ -111,7 +113,7 @@ void incUpdate(int nn, int lo, int hi, int l, int r, int x) {
 
 }
 
-void setUpdate(int nn, int lo, int hi, int l, int r, int x) {
+void setUpdate(int nn, int lo, int hi, int l, int r, int x) { // updates with set value
 	if(hi < l || r < lo) return;
 
 	if(l <= lo && r >= hi) {
